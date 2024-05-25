@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="error_message">Something went wrong. Please try again.</string>
+    <string name="contentDescription">Content Description Example</string>
+    <string name="about_this_app_title">About this Test App</string>
+    <string name="about_this_app_description">Simple application that grabs content from the web \"https://www.compass.com/about/\" and defines and runs 2 requests simultaneously:</string>
+    <string name="about_this_app_description_2">Every10thCharacterRequest:</string>
+    <string name="about_this_app_description_3">Find every 10th character (i.e. 10th, 20th, 30th, etc.) and display the array on the screen.</string>
+    <string name="about_this_app_description_4">WordCounterRequest:</string>
+    <string name="about_this_app_description_5">Split the text into words using whitespace characters (i.e. space, tab, line break, etc.), count the occurrence of every unique word (case insensitive) and display the count for each word on the
+screen.</string>
+    <string name="about_this_app_description_6">(In order to make it more readable we are getting the very first \"main\" container from the web content and splitting the entire string into de first 1000 characters)</string>
+
+    <string name="run_requests_button_view_text">Run Requests</string>
+
+    <string name="str_every_10th_Char">Every 10th Character:\n\n%1$s</string>
+    <string name="str_word_count">Word Count:\n%1$s</string>
+    <string name="results">Results:</string>
+</resources>
