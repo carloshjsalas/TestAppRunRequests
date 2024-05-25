@@ -14,6 +14,7 @@ screen.
 - Consider the content plain-text, regardless of what is returned by the response.
 - Treat anything separated by whitespace characters as a single word.
 - The data is cached and available offline after the first fetch while the app is open.
+- Main methods from DetailsViewModel where unit-tested.
 
 ## Architecture MVVM
 
