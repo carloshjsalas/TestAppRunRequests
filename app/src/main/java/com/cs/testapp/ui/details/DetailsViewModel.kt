@@ -5,9 +5,9 @@ import android.content.Context
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.Companion.PRIVATE
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.cs.testapp.R
 import com.cs.testapp.data.DataModel
 import com.cs.testapp.data.EMPTY_STRING
 import com.cs.testapp.utils.Constant.MAIN_CONTAINER
@@ -17,6 +17,7 @@ import com.cs.testapp.utils.NetworkHelper
 import com.cs.testapp.utils.Outcome
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.jsoup.Jsoup
@@ -29,18 +30,19 @@ class DetailsViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    val outcome by lazy { MutableLiveData<Outcome<DetailsActions>>() }
+    private val _outcome = MutableLiveData<Outcome<DetailsActions>>()
+    val outcome : LiveData<Outcome<DetailsActions>> get() = _outcome
 
     private val context: Context by lazy { getApplication() }
     private val networkHelper = NetworkHelper(context)
 
     fun fetchBlogData(dataModel: DataModel) {
-        outcome.postValue(Outcome.Loading())
+        _outcome.postValue(Outcome.Loading())
         val fetchDataJob = viewModelScope.launch(Dispatchers.IO) {
             if (dataModel.pageData.isEmpty()) {
                 getDataFromWebSite(dataModel)
             } else {
-                outcome.postValue(Outcome.Success())
+                _outcome.postValue(Outcome.Success())
             }
         }
         runBlocking {
@@ -64,14 +66,14 @@ class DetailsViewModel @Inject constructor(
                     doc.select(MAIN_CONTAINER).toString().replace("\n", "").substring(0, 1000)
                 builder.append(body.split(" ").toTypedArray().filter { it.isNotEmpty() })
                 dataModel.pageData = builder.toString()
-                outcome.postValue(Outcome.Success())
+                _outcome.postValue(Outcome.Success())
             } catch (e: Exception) {
                 builder.append(e.message)
                 dataModel.pageData = builder.toString()
-                outcome.postValue(Outcome.Error(e.cause))
+                _outcome.postValue(Outcome.Error(e.cause))
             }
         } else {
-            outcome.postValue(Outcome.Error(Throwable("No internet connection")))
+            _outcome.postValue(Outcome.Error(Throwable("No internet connection")))
         }
     }
 

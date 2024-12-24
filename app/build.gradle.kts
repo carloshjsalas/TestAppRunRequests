@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.cs.testapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.cs.testapp"
@@ -54,22 +54,22 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.runtime.ktx)
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.fragment.ktx)
 
-    kapt("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
+    kapt(libs.androidx.navigation.safe.args.gradle.plugin)
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.hilt.compiler)
 
-    implementation("org.jsoup:jsoup:1.13.1")
+    implementation(libs.jsoup)
 
     testImplementation(libs.junit)
-    androidTestImplementation("org.mockito:mockito-android:2.24.5")
-    testImplementation("org.mockito:mockito-core:3.6.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1")
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation(libs.mockito.android)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core.testing)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

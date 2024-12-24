@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     id("com.google.dagger.hilt.android") version "2.44" apply false
-    id("com.android.library") version "8.1.1" apply false
-    id("androidx.navigation.safeargs") version "2.7.7" apply false
+    id("com.android.library") version "8.1.4" apply false
+    id("androidx.navigation.safeargs") version "2.8.5" apply false
 
 }
